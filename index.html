@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Portfólio | Jerr</title>
+</head>
+
+<body>
+    <div class="particulas"></div>
+    <nav class="navegacao">
+        <ul class="menu">
+            <li>
+                <a href="#inicio" class="menu-link">Início</a>
+            </li>
+            <li>
+                <a href="#sobre" class="menu-link">Sobre</a>
+            </li>
+            <li>
+                <a href="#projetos" class="menu-link">Projetos</a>
+            </li>
+            <li>
+                <a href="#contato" class="menu-link">Contato</a>
+            </li>
+        </ul>
+        <div class="nav-badge" id="nav-badge" aria-live="polite" aria-atomic="true">
+            <span class="badge-text">Última visita: <span id="badge-time"></span></span>
+            <div class="badge-controls" role="group" aria-label="Controles do badge">
+                <button id="toggle-terminal-visibility" class="badge-btn" aria-pressed="false"
+                    aria-label="Ocultar terminal">Ocultar</button>
+                <button id="nav-sound-toggle" class="badge-btn" aria-pressed="true" title="Som da animação"
+                    aria-label="Som">🔊</button>
+            </div>
+        </div>
+    </nav>
+
+    <main id="inicio" class="cabecalho">
+        <div class="perfil-e-terminal">
+            <h1>Jesus Rama</h1>
+            <img src="./img/img.png" alt="Foto de Jerr" class="foto-perfil">
+            <p class="cabecalho-sub-titulo">Dev_Analista_de_Sistemas_BIG-DATE</p>
+            <div class="terminal" role="region" aria-label="Terminal de demonstração">
+                <div class="terminal-header">
+                    <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                </div>
+                <div class="terminal-body">
+                    <!-- Linha superior fixa (ex.: prompt estilo terminal) e sugestões de comando -->
+                    <div class="terminal-top" id="terminal-top">
+                        <span class="terminal-topline" id="terminal-topline">┌─[root@Jerr]─[~]</span>
+                        <!-- Dica removida por solicitação do usuário -->
+                        <div class="terminal-suggestion" id="terminal-suggestion" hidden>Sugestão: <button id="run-curl"
+                                class="copy-btn">curl</button> <button id="run-cmatrix-suggest"
+                                class="copy-btn">cmatrix</button></div>
+                    </div>
+                    <pre class="terminal-lines" id="terminal-lines" aria-live="polite" role="status"></pre>
+
+                    <!-- Área de animação Matrix (usada pelo comando curl) -->
+                    <div id="matrix-area" class="matrix-area" aria-hidden="true">
+                        <canvas id="matrix-canvas" class="matrix-canvas" aria-hidden="true"></canvas>
+                    </div>
+
+                    <!-- Linha de prompt (oculta até ser aberta) -->
+
+                    <div class="terminal-prompt-row" id="terminal-prompt-row" hidden>
+                        <span class="prompt" id="terminal-prompt">└──╼ #</span>
+                        <form id="terminal-form" class="terminal-form" autocomplete="off">
+                            <input id="terminal-input" class="terminal-input" spellcheck="false" autocomplete="off" />
+                        </form>
+                    </div>
+
+                    <!-- Estado fechado (mostra botão 'Abrir terminal') -->
+                    <div class="terminal-closed-message" id="terminal-closed-message">
+                        <button id="terminal-open" class="terminal-open" aria-label="Abrir terminal">Abrir
+                            terminal</button>
+                    </div>
+
+                    <div class="terminal-footer">
+                        <span class="timestamp" id="terminal-timestamp" aria-hidden="true"></span>
+                        <div class="terminal-controls">
+                            <button class="terminal-replay" id="terminal-replay"
+                                aria-label="Reproduzir animação">⟲</button>
+                            <button class="terminal-pause" id="terminal-pause" aria-pressed="false"
+                                aria-label="Pausar animação">Pausar</button>
+                            <button class="terminal-hide" id="terminal-hide" aria-pressed="false"
+                                aria-label="Ocultar terminal">Ocultar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="corner-note" id="corner-note" aria-hidden="true">echo "Olá! eu_Sou_Jerr"</div>
+            </div>
+        </div>
+    </main>
+
+    <section id="sobre" class="Sobre">
+        <h2 class="sobre-titulo">Sobre Mim</h2>
+        <div class="sobre-caixa">
+            <p class="sobre-paragrafo">
+                Olá! Meu nome é Jesus Rama, sou um Dev Analista de Sistemas apaixonado por tecnologia e inovação.
+                Tenho experiência em diversas linguagens de programação e estou sempre em busca de novos desafios para
+                aprimorar minhas habilidades.
+            </p>
+        </div>
+    </section>
+
+    <section id="projetos" class="projetos">
+        <div class="projetos-container">
+            <h2 class="projetos-titulo">Projetos em destaque</h2>
+            <div class="projetos-frame" aria-hidden="false">
+                <article class="projeto-card">
+                    <figure class="projeto-media">
+                        <img src="./img/BIG_DATE.png" alt="Análise de Dados" class="projeto-imagem">
+                    </figure>
+                    <div class="projeto-body">
+                        <h3 class="projeto-titulo">Análise de Dados</h3>
+                        <p class="projeto-descricao">Projeto focado em análise de Dados e grandes volumes, em formato csv para
+                            extrair insights valiosos e auxiliar na tomada de decisões estratégicas.</p>
+                        <div class="projeto-actions">
+                            <a class="btn" href="https://github.com/Ramaswr/Banco-de-teste-BIG_DATA" role="button" target="_blank" rel="noreferrer">Abrir análises</a>
+                            <a class="btn ghost" href="https://github.com/Ramaswr/Banco-de-teste-BIG_DATA/tree/main" role="button" target="_blank" rel="noreferrer">Ver arquivos</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="contatos" class="contatos">
+        <h2 class="contatos-titulo">Entre em Contato</h2>
+        <form class="formulario-contato" id="formulario">
+            <div class="grupo-form">
+                <input placeholder="Nome" class="campo-form" id="nome">
+            </div>
+            <div class="grupo-form">
+                <textarea class="campo-form" placeholder="Digite sua Mensagem" rows="6" id="mensagem"></textarea>
+            </div>
+            <button type="submit" class="botao-form">Enviar WhatsApp</button>
+        </form>
+    </section>
+
+
+
+    <!-- Coloque este bloco onde quiser exibir o título -->
+    <div class="hero">
+        <svg class="flame-filters" width="0" height="0" aria-hidden="true">
+            <filter id="flameNoise">
+                <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="2" result="noise" />
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="20" xChannelSelector="R"
+                    yChannelSelector="G" />
+            </filter>
+            <filter id="glow">
+                <feGaussianBlur stdDeviation="8" result="blur" />
+                <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                </feMerge>
+            </filter>
+        </svg>
+
+        <h1 class="flame-title flame-small flame-blue" aria-label="JERR PORTFOLIO">JERR PORTFOLIO</h1>
+    </div>
+
+
+
+    <script src="terminal.js" defer></script>
+    <script defer>
+        function enviarWhats(event) {
+            event.preventDefault();
+
+            const nome = document.getElementById('nome').value.trim();
+            const mensagem = document.getElementById('mensagem').value.trim();
+            const telefone = '5592985162222';
+
+            if (!nome && !mensagem) {
+                alert('Por favor, preencha o nome ou a mensagem antes de enviar.');
+                return;
+            }
+
+            const texto = `Olá, me chamo ${nome || 'Jesus Rama'}. ${mensagem}`;
+            const msgFormatada = encodeURIComponent(texto);
+
+            const url = `https://wa.me/${telefone}?text=${msgFormatada}`;
+
+            window.open(url, '_blank');
+        }
+
+        const formularioContato = document.getElementById('formulario');
+        if (formularioContato) {
+            formularioContato.addEventListener('submit', enviarWhats);
+        }
+    </script>
+</body>
+
+</html>

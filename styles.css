@@ -1,0 +1,1092 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+:root {
+    --primary: #4f46e5;
+    --secundaria: #7c3aed;
+    --escuro: #0f172a;
+    --maisEscuro: #0a0f1c;
+    --claro: #e2e8f0;
+    --vidro: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    background-color: var(--escuro);
+    color: var(--claro);
+}
+
+.navegacao {
+    position: fixed;
+    background: rgba(15, 23, 42, 0.8);
+    width: 100%;
+    z-index: 100;
+    padding: 1.5rem;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 3rem;
+}
+
+.menu-link {
+    text-decoration: none;
+    color: var(--claro);
+    /* fallback para navegadores sem suporte a background-clip */
+    font-weight: 500;
+    padding: 0.5rem 0;
+    position: relative;
+    /* Aplica o mesmo gradiente do título 'Sobre' */
+    background: linear-gradient(90deg, #00d9ff, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.menu-link::after {
+    content: '';
+    height: 2px;
+    width: 0%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(90deg, var(--primary), var(--secundaria));
+    transition: width 0.5s ease;
+}
+
+.menu-link:hover::after {
+    width: 100%;
+}
+
+/* ===================================================
+   SEÇÃO: CABEÇALHO — Títulos (ex.: "Jesus rama", "Dev_Analista_DE-SISTEMAS-BIG-DATE_")
+   Seletores: .cabecalho, h1, .cabecalho-sub-titulo, .foto-perfil
+   Descrição: Estilos do cabeçalho e dos títulos principais. Útil para identificar onde atualizar textos e tags relacionadas ao topo da página.
+   Como atualizar: Edite o HTML (ex.: <h1 id="titulo-principal">) para alterar o texto; os estilos aqui controlam aparência e efeitos.
+   Última alteração: 27/01/2026
+   =================================================== */
+
+.cabecalho {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.foto-perfil {
+    width: 350px;
+    height: 350px;
+    box-shadow: 0 0 20px rgba(79, 70, 229, 0.3);
+    border-radius: 50%;
+    border: 4px solid var(--vidro);
+    animation: flutuar 5s ease-in-out infinite;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #00fff5;
+    font-weight: 100;
+    font-size: 1.5rem;
+    border: 1px solid #00fff5;
+    margin: 10px;
+    box-shadow: inset 0 0 10px rgba(0, 255, 245, 0.4),
+        0 0 25px rgba(0, 255, 245, 0.2);
+    padding: 0.3rem 0.5rem;
+    border-radius: 12px;
+    padding: 0.3rem 0.6rem;
+    transition: 0.5s;
+    text-transform: uppercase;
+    border-radius: 8px;
+    cursor: pointer;
+    letter-spacing: 0.2px;
+    position: relative;
+
+}
+
+h1:hover {
+    box-shadow:
+        0 0 20px rgba(0, 255, 245, 0.6),
+        0 0 35px rgba(0, 255, 245, 0.4);
+    background: rgba(0, 255, 245, 0.1);
+    border-color: #00fff5;
+}
+
+
+
+.cabecalho-sub-titulo {
+    position: relative;
+    font-weight: 100;
+    letter-spacing: 0.2px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #00fff5;
+    border: 1px solid #00fff5;
+    border-radius: 8px;
+    background: transparent;
+    box-shadow:
+        0 0 10px rgba(0, 255, 245, 0.4),
+        0 0 25px rgba(0, 255, 245, 0.2);
+    transition: 0.5s;
+    padding: 0.3rem 0.6rem;
+    text-transform: uppercase;
+}
+
+.cabecalho-sub-titulo:hover {
+    box-shadow:
+        0 0 20px rgba(0, 255, 245, 0.6),
+        0 0 35px rgba(0, 255, 245, 0.4);
+    background: rgba(0, 255, 245, 0.1);
+    border-color: #00fff5;
+}
+
+/* ===================================================
+   SEÇÃO: SOBRE MIM — 'SOBRE'
+   Seletores: .sobre, .sobre-titulo, .sobre-caixa, .sobre-paragrafo
+   Descrição: Bloco 'Sobre mim' — texto descritivo e estilo do título.
+   Como atualizar: Modifique o conteúdo no HTML (ex.: <section id="sobre">) ou no parágrafo com classe .sobre-paragrafo.
+   Última alteração: 27/01/2026
+   =================================================== */
+
+.sobre {
+    position: relative;
+    font-weight: 100;
+    letter-spacing: 0.2px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #00fff5;
+    border: 1px solid #00fff5;
+    border-radius: 8px;
+    background: transparent;
+    box-shadow:
+        0 0 10px rgba(0, 255, 245, 0.4),
+        0 0 25px rgba(0, 255, 245, 0.2);
+    transition: 0.5s;
+    padding: 0.3rem 0.6rem;
+    text-transform: uppercase;
+    padding: 6rem 2rem;
+}
+
+
+.sobre:hover {
+    box-shadow:
+        0 0 20px rgba(0, 255, 245, 0.6),
+        0 0 35px rgba(0, 255, 245, 0.4);
+    background: rgba(0, 255, 245, 0.1);
+    border-color: #00fff5;
+}
+
+
+.sobre-titulo {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+
+    background: linear-gradient(90deg, #00d9ff, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+    position: relative;
+    font-weight: 100;
+    letter-spacing: 0.2px;
+    cursor: pointer;
+    padding: 0.3rem 0.6rem;
+    transition: 0.5s;
+}
+
+
+
+
+.contatos-titulo {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+
+    background: linear-gradient(90deg, #00d9ff, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+    position: relative;
+    font-weight: 100;
+    letter-spacing: 0.2px;
+    cursor: pointer;
+    padding: 0.3rem 0.6rem;
+    transition: 0.5s;
+}
+
+.contatos-titulo:hover {
+
+    border: #00d9ff;
+
+} 
+
+
+
+.sobre-caixa {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 16px;
+    border: 1px solid var(--vidro);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.sobre-paragrafo {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #00fff5;
+    text-shadow: 0 0 6px rgba(0, 255, 245, 0.7);
+    padding: 0 1rem;
+    line-height: 1.6;
+}
+
+.projeto-descricao {
+    font-size: 1rem;
+    color: #00fff5;
+    text-shadow: 0 0 6px rgba(0, 255, 245, 0.7);
+    margin-bottom: 1rem;
+    transition: color 0.3s ease;
+}
+
+.projeto-descricao::first-line {
+    letter-spacing: 0.5px;
+}
+
+
+/* ===================================================
+   SEÇÃO: PROJETOS EM DESTAQUE
+   Seletores: .projetos, .projetos-container, .projetos-titulo, .projeto-card, .projeto-media
+   Descrição: Área de projetos (cards, imagens, botões/links de ação).
+   Como atualizar: Para adicionar/remover projetos, edite o HTML nos elementos com classe .projeto-card e utilize .btn / .btn.ghost para ações.
+   Dica: Verifique responsividade em @media(max-width: 900px) para comportamento em telas pequenas.
+   Última alteração: 27/01/2026
+   =================================================== */
+.projetos {
+    padding: 6rem 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.projetos-container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.projetos-titulo {
+    font-size: 1.8rem;
+    color: var(--claro);
+    margin-bottom: 0.8rem;
+    position: relative;
+    font-weight: 100;
+    letter-spacing: 0.2px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #00fff5;
+    border: 1px solid #00fff5;
+    border-radius: 8px;
+    background: transparent;
+    box-shadow:
+        0 0 10px rgba(0, 255, 245, 0.4),
+        0 0 25px rgba(0, 255, 245, 0.2);
+    transition: 0.5s;
+    padding: 0.3rem 0.6rem;
+    text-transform: uppercase;
+}
+
+
+
+.projetos-titulo:hover {
+    box-shadow:
+        0 0 20px rgba(0, 255, 245, 0.6),
+        0 0 35px rgba(0, 255, 245, 0.4);
+    background: rgba(0, 255, 245, 0.1);
+    border-color: #00fff5;
+}
+
+
+
+h1:hover {
+    box-shadow:
+        0 0 20px rgba(0, 255, 245, 0.6),
+        0 0 35px rgba(0, 255, 245, 0.4);
+    background: rgba(0, 255, 245, 0.1);
+    border-color: #00fff5;
+}
+
+
+/* o quadro — ocupa 50% da largura da viewport em telas grandes */
+.projetos-frame {
+    width: 50vw;
+    max-width: 900px;
+    min-width: 320px;
+}
+
+.projeto-card {
+    position: relative;
+    padding: 50px 60px 60px;
+    display: flex;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(2, 6, 23, 0.5);
+    text-align: left;
+    overflow: hidden;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: 0.5s;
+}
+
+
+
+.projeto-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1.5px;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.4),
+            transparent);
+}
+
+
+.projeto-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg,
+            transparent 40%,
+            rgba(255, 255, 255, 0.03) 50%,
+            transparent 60%);
+    animation: shimmer 5s ease-in-out infinite;
+}
+
+
+
+/* Removed stray ".projeto" line that caused a parsing error */
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%) rotate(45deg);
+    }
+
+    100% {
+        transform: translateX(100%) rotate(45deg);
+    }
+}
+
+.projeto-card:hover {
+    transform: translateY(-5px);
+    border-radius: 12px;
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.4),
+        0 0 40px rgba(168, 85, 204, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+
+.projeto-card h3 {
+    position: relative;
+    margin-bottom: 10px;
+    font-weight: 700;
+    font-size: 1.7rem;
+    background: linear-gradient(135deg, #00fff5 0%, #e0e0e0 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+.projeto-card p {
+    position: relative;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1rem;
+}
+
+
+.projeto-card h2 {
+    color: #00fff5;
+
+}
+
+
+
+
+.projeto-media {
+    flex: 0 0 45%;
+    margin: 0;
+}
+
+.projeto-imagem {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.projeto-body {
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.projeto-titulo {
+    font-size: 1.2rem;
+    color: var(--claro);
+    margin: 0;
+}
+
+.projeto-descricao {
+    color: var(--claro);
+    opacity: 0.85;
+    margin: 0;
+}
+
+.projeto-actions {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 0.6rem;
+}
+
+.btn {
+    background: linear-gradient(90deg, var(--primary), var(--secundaria));
+    color: #fff;
+    padding: 0.5rem 0.9rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.btn.ghost {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: var(--claro);
+}
+
+@media(max-width: 900px) {
+    .projetos-frame {
+        width: 100%;
+    }
+
+    .projeto-card {
+        flex-direction: column;
+    }
+
+    .projeto-media {
+        flex: 0 0 auto;
+        height: 200px;
+    }
+}
+
+/* ===================================================
+   SEÇÃO: ENTRE EM CONTATO — Contato
+   Seletores: .contato, .contato-titulo, .formulario-contato, .campo-form, .botao-form
+   Descrição: Formulário de contato e estilos visuais dos campos e botões.
+   Como atualizar: Edite o HTML do formulário; use .campo-form para inputs e .botao-form para botões. Ajuste validações/funcionalidade no JS (se houver).
+   Última alteração: 27/01/2026
+   =================================================== */
+
+.contato {
+    padding: 6rem 2rem;
+}
+
+.contato-titulo {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+}
+
+.formulario-contato {
+    max-width: 600px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.05);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    padding: 2rem;
+    border: 1px solid var(--vidro);
+    border-radius: 16px;
+}
+
+.campo-form {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    color: var(--claro);
+    border: 1px solid var(--vidro);
+    outline: none;
+}
+
+
+.campo-form.focus {
+    border-color: var(--secundaria);
+    box-shadow: 0 0 10px rgba(79, 70, 229, 0.3);
+}
+
+
+
+.grupo-form {
+    margin-bottom: 1.5rem;
+}
+
+
+.botao-form {
+    color: var(--claro);
+    background: linear-gradient(45deg, var(--primary), var(--secundaria));
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    transition: all 0.5s ease;
+
+}
+
+
+.botao-form:hover {
+    box-shadow: 0 5px 15px rgba(79, 70, 229, 0.4);
+    transform: translateY(-4px);
+}
+
+.particulas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.5;
+    background:
+        radial-gradient(circle at 10% 20%, var(--primary) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, var(--secundaria) 0%, transparent 20%),
+        var(--maisEscuro);
+}
+
+
+@keyframes flutuar {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+
+
+
+/* ===================================================
+   SEÇÃO: PERFIL E TERMINAL
+   Seletores: .perfil-e-terminal, .terminal, .terminal-header, .terminal-lines, .terminal-footer, .terminal-controls
+   Descrição: Área de perfil e terminal interativo (animações, controles de som e reprodução, marcação tipo terminal).
+   Como atualizar: Para alterar textos ou comandos exibidos, modifique o arquivo `terminal.js` ou o HTML; aqui estão os estilos visuais. Verifique classes de controle (.terminal-replay, .terminal-pause, .terminal-sound-toggle).
+   Última alteração: 27/01/2026
+   =================================================== */
+.perfil-e-terminal {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-direction: column;
+    /* manter nome em cima e cargo embaixo */
+    text-align: center;
+}
+
+/* Desktop tweak: manter ordem vertical, ajustar imagem */
+@media(min-width: 900px) {
+    .foto-perfil {
+        width: 260px;
+        height: 260px;
+    }
+}
+
+.terminal {
+    background: linear-gradient(180deg, rgba(6, 8, 15, 0.9), rgba(10, 14, 20, 0.9));
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(2, 6, 23, 0.6);
+    max-width: 420px;
+    color: #9ae6b4;
+    font-family: "Fira Code", "Source Code Pro", "Courier New", monospace;
+}
+
+.terminal-header {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 0.6rem;
+}
+
+.terminal-header .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot.red {
+    background: #ff5f56;
+}
+
+.dot.yellow {
+    background: #ffbd2e;
+}
+
+.dot.green {
+    background: #27c93f;
+}
+
+.terminal-lines {
+    margin: 0;
+    white-space: pre;
+    font-size: 0.95rem;
+    line-height: 1.25;
+    color: #9ae6b4;
+}
+
+.cursor {
+    display: inline-block;
+    color: #9ae6b4;
+    background: transparent;
+    padding-left: 4px;
+    animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+/* Ajuste pequeno */
+.cabecalho-sub-titulo {
+    margin-top: 6px;
+}
+
+/* Badge de navegação */
+.nav-badge {
+    /* fixado no canto inferior esquerdo da viewport */
+    position: fixed;
+    left: 1.25rem;
+    bottom: 1rem;
+    color: var(--claro);
+    background: rgba(255, 255, 255, 0.02);
+    padding: 0.6rem 0.7rem;
+    /* tamanho padrão */
+    border-radius: 8px;
+    font-size: 0.85rem;
+    /* tamanho padrão */
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    z-index: 9999;
+    display: flex;
+    gap: 0.7rem;
+    /* padrão */
+    align-items: center;
+    max-width: 400px;
+    /* padrão */
+}
+
+.nav-badge .badge-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    max-width: 140px;
+    /* padrão */
+}
+
+.nav-badge .badge-controls {
+    display: flex;
+    gap: 0.35rem;
+    /* padrão */
+    align-items: center;
+}
+
+.nav-badge .badge-btn {
+    padding: 0.15rem 0.5rem;
+    /* padrão */
+    font-size: 0.8rem;
+    /* padrão */
+    border-radius: 6px;
+}
+
+@media (max-width: 420px) {
+    .nav-badge {
+        display: none;
+    }
+}
+
+/* Terminal footer and controls */
+.terminal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.6rem;
+    gap: 0.5rem;
+}
+
+.timestamp {
+    font-size: 0.8rem;
+    color: #a3e635;
+}
+
+.terminal-replay {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: var(--claro);
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.terminal-replay:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.corner-note {
+    position: absolute;
+    right: 0.8rem;
+    bottom: -1.2rem;
+    font-size: 0.75rem;
+    color: rgba(163, 230, 52, 0.9);
+    opacity: 0.9;
+}
+
+/* small responsive tweak for nav badge on mobile */
+@media(max-width: 700px) {
+    .nav-badge {
+        display: none;
+    }
+
+    .corner-note {
+        display: none;
+    }
+}
+
+/* Controles */
+.badge-btn {
+    margin-left: 0.6rem;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    color: var(--claro);
+    padding: 0.15rem 0.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.terminal-controls {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+}
+
+.terminal-sound-toggle {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: var(--claro);
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.sound-control {
+    font-size: 0.8rem;
+    color: #aeea00;
+    margin-left: 0.4rem;
+}
+
+.terminal-sound-volume,
+.terminal-sound-intensity {
+    width: 90px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 6px;
+}
+
+.terminal-sound-volume::-webkit-slider-thumb,
+.terminal-sound-intensity::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    background: #aeea00;
+    border-radius: 50%;
+    border: none;
+}
+
+.terminal-pause,
+.terminal-hide,
+.terminal-replay {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: var(--claro);
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.terminal-pause[aria-pressed="true"],
+.terminal-hide[aria-pressed="true"] {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.terminal.hidden {
+    display: none;
+}
+
+/* Prompt / Input */
+.terminal-prompt-row {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    margin-top: 0.6rem;
+}
+
+.prompt {
+    color: #9ae6b4;
+    font-family: inherit;
+}
+
+.terminal-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #9ae6b4;
+    font-family: "Fira Code", "Source Code Pro", monospace;
+    font-size: 0.95rem;
+    caret-color: #9ae6b4;
+    flex: 1;
+}
+
+.terminal-closed-message {
+    margin-top: 0.6rem;
+}
+
+.terminal-open {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: var(--claro);
+    padding: 0.35rem 0.7rem;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.terminal-open:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.terminal-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.4rem;
+}
+
+.terminal-topline {
+    color: #9ae6b4;
+    font-family: "Fira Code", monospace;
+    font-weight: 600;
+}
+
+.terminal-hint {
+    color: #aeea00;
+    font-size: 0.85rem;
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+}
+
+.copy-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: var(--claro);
+    padding: 0.18rem 0.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.copy-btn:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+/* Esconder sugestão para manter visual limpo */
+.terminal-suggestion[hidden] {
+    display: none;
+}
+
+/* Badge sound control (pequeno, fora do terminal) */
+#nav-sound-toggle {
+    font-size: 0.9rem;
+    padding: 0.15rem 0.4rem;
+}
+
+
+/* Área de animação Matrix (canvas horizontal) */
+.matrix-area {
+    position: relative;
+    font-family: "Fira Code", "Source Code Pro", monospace;
+    color: #00ff66;
+    background: transparent;
+    margin-top: 0.6rem;
+    height: 200px;
+    overflow: hidden;
+    /* evitar overflow e garantir que tudo fique dentro do terminal */
+    border-radius: 6px;
+}
+
+.matrix-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: transparent;
+}
+
+.dev-art {
+    color: #aaffaa;
+    font-family: "Courier New", monospace;
+    margin-top: 0.4rem;
+    line-height: 1;
+    text-align: left;
+    white-space: pre;
+}
+
+/* Observação: columns/ DOM approach removed and replaced by canvas animation for better performance */
+
+/* Small floating flame: fixa título reduzido no canto inferior direito (removível) */
+.flame-title.flame-small {
+    position: fixed;
+    right: var(--corner-offset, 18px);
+    bottom: var(--corner-offset, 18px);
+    margin: 0;
+    font-size: var(--text-size-small, 18px);
+    -webkit-text-stroke: var(--stroke-small, 0.9px) rgba(0, 0, 0, 0.65);
+    text-shadow: 0 6px 14px rgba(0, 0, 0, 0.55);
+    padding: 6px 10px;
+    border-radius: 6px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.06));
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    z-index: 9999;
+    pointer-events: auto;
+    transform-origin: right bottom;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    /* Ensure visibility: fallback to solid color based on flame variable */
+    color: var(--flame-1, #bfe9ff);
+    -webkit-text-fill-color: var(--flame-1, #bfe9ff);
+    background: none;
+    /* remove gradient clip for small badge for better legibility */
+}
+
+/* reduz animações e blur para o tamanho pequeno */
+.flame-title.flame-small::after {
+    left: -6%;
+    right: -6%;
+    bottom: -10%;
+    height: 28%;
+    filter: blur(10px) saturate(1.05);
+    animation-duration: 2.2s;
+}
+
+/* pseudo-chamas frontais menos invasivas */
+.flame-title.flame-small::before {
+    filter: none;
+    opacity: 0.9;
+    animation-duration: 1.6s;
+}
+
+/* responsividade: ainda menor em telas muito pequenas */
+@media (max-width:420px) {
+    .flame-title.flame-small {
+        font-size: clamp(12px, 3.5vw, 20px);
+        right: 12px;
+        bottom: 12px;
+        padding: 4px 8px;
+        -webkit-text-stroke: 0.8px rgba(0, 0, 0, 0.7);
+    }
+}
+
+/* FLAME COLOR MODES: matching / override */
+:root {
+    --flame-1: var(--primary-1, #ffd86b);
+    --flame-2: var(--primary-2, #ff8a3d);
+    --flame-3: var(--primary-3, #ff3b1f);
+}
+
+/* Base flame gradient (uses --flame-*) */
+.flame-title {
+    background: linear-gradient(90deg, var(--flame-1) 0%, var(--flame-2) 45%, var(--flame-3) 75%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Safari support for user-select */
+.flame-title,
+.flame-title.flame-small {
+    -webkit-user-select: none;
+    /* Safari 3+, iOS 3+ */
+    user-select: none;
+    /* standard */
+}
+
+/* Use site palette when this helper class is present */
+.flame-title.flame-match {
+    --flame-1: var(--primary, var(--flame-1));
+    --flame-2: var(--secundaria, var(--flame-2));
+    --flame-3: var(--claro, var(--flame-3));
+}
+
+/* Force warm yellow flames */
+.flame-title.flame-yellow {
+    --flame-1: #ffd86b;
+    --flame-2: #ffb347;
+    --flame-3: #ff7a1f;
+}
+
+/* Force blue flames (tecnológica) */
+.flame-title.flame-blue {
+    --flame-1: #bfe9ff;
+    --flame-2: #6fd3ff;
+    --flame-3: #1fb6ff;
+}
