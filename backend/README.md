@@ -43,6 +43,8 @@ uvicorn main:app --reload --host 0.0.0.0 --port 8080
 
    Depois disso você pode usar `jerr01/portfolio:latest` como imagem no deploy ou em qualquer host que consuma imagens públicas.
 
+   Ao usar `podman login`, digite `jerr01` quando ele pedir `Username` e cole um token válido (Settings → Security → New Access Token) quando pedir a senha. Crie/recrie o token se o login falhar (mensagens como `requested access to the resource is denied` ou `insufficient_scope` geralmente indicam credenciais inválidas ou token expirado).
+
 5. Use o endereço `https://hub.docker.com/repository/docker/jerr01/portfolio/general` para revisar versões e ver o histórico de pushes.
 
 Depois do deploy, defina `window.TERMINAL_API_BASE` no navegador (por exemplo, via `<script>window.TERMINAL_API_BASE = 'https://meu-run-url.run.app';</script>`) para que `terminal.js` envie comandos ao backend.
