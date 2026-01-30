@@ -47,4 +47,11 @@ uvicorn main:app --reload --host 0.0.0.0 --port 8080
 
 5. Use o endereço `https://hub.docker.com/repository/docker/jerr01/portfolio/general` para revisar versões e ver o histórico de pushes.
 
+## Automação segura (GitHub Actions)
+
+1. A workflow está ativa em `.github/workflows/docker-publish.yml`; ele executa em pushes para `main` e quando disparado manualmente (`workflow_dispatch`).  
+2. O fluxo usa `docker/build-push-action` para buildar + subir `jerr01/portfolio:latest` em ambiente Ubuntu.  
+3. Para evitar expor credenciais no repositório, crie os segredos `DOCKER_USERNAME` e `DOCKER_TOKEN` no repositório GitHub (Settings → Secrets & Variables → Actions) com seu login Docker Hub e um token pessoal (Security → New Access Token).  
+4. Com os segredos configurados, qualquer push para `main` reconstrói e repõe a imagem automaticamente, mantendo o backend sempre atualizado no Docker Hub sem rodar comandos locais.
+
 Depois do deploy, defina `window.TERMINAL_API_BASE` no navegador (por exemplo, via `<script>window.TERMINAL_API_BASE = 'https://meu-run-url.run.app';</script>`) para que `terminal.js` envie comandos ao backend.
