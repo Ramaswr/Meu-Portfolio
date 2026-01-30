@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """Gera uma visão textual de alto nível da arquitetura do portfólio integrado ao projeto Big Data."""
-from dataclasses import dataclass, field
+from dataclasses import asdict, dataclass, field
+from pathlib import Path
 from typing import List
+import json
 
 
 @dataclass
@@ -19,6 +21,14 @@ class Layer:
     components: List[Component]
 
 
+@dataclass
+class Project:
+    name: str
+    repo_url: str
+    description: str
+    contributions: List[str]
+
+
 def build_architecture() -> List[Layer]:
     return [
         Layer(
@@ -27,7 +37,7 @@ def build_architecture() -> List[Layer]:
             components=[
                 Component(
                     name="Watcher de repositório",
-                    purpose="Sinaliza novos commits" ,
+                    purpose="Sinaliza novos commits",
                     responsibilities=[
                         "Monitora branches e pastas definidas",
                         "Agenda jobs Python para baixar artefatos CSV/PDF",
@@ -37,7 +47,7 @@ def build_architecture() -> List[Layer]:
                 ),
                 Component(
                     name="Importador local",
-                    purpose="Captura uploads manuais e exemplos" ,
+                    purpose="Captura uploads manuais e exemplos",
                     responsibilities=[
                         "Valida conteúdo e metadados dos arquivos",
                         "Padroniza colunas usando pandas/duckdb",
@@ -49,7 +59,7 @@ def build_architecture() -> List[Layer]:
         ),
         Layer(
             name="Processamento",
-            description="Transforma os dados em métricas/insights", 
+            description="Transforma os dados em métricas/insights",
             components=[
                 Component(
                     name="Jobs Python (FastAPI, pandas)",
@@ -75,7 +85,7 @@ def build_architecture() -> List[Layer]:
         ),
         Layer(
             name="Armazenamento",
-            description="Fase final de leitura e cache dos resultados", 
+            description="Fase final de leitura e cache dos resultados",
             components=[
                 Component(
                     name="Data lake local",
@@ -116,7 +126,7 @@ def build_architecture() -> List[Layer]:
                     name="Front-end do portfólio",
                     purpose="Apresenta projetos, métricas e terminal",
                     responsibilities=[
-                        "Reutiliza o terminal já construído", 
+                        "Reutiliza o terminal já construído",
                         "Consome APIs Python para dashboards",
                         "Permite downloads/detalhes de CSV e PDF"
                     ],
@@ -126,7 +136,7 @@ def build_architecture() -> List[Layer]:
         ),
         Layer(
             name="Operações transversais",
-            description="Recursos de segurança, monitoramento e entrega", 
+            description="Recursos de segurança, monitoramento e entrega",
             components=[
                 Component(
                     name="CI/CD GitHub Actions",
@@ -152,6 +162,7 @@ def build_architecture() -> List[Layer]:
         )
     ]
 
+
 def render_architecture(layers: List[Layer]) -> None:
     print("Arquitetura HLD - Portfólio & Projeto Big Data")
     for layer in layers:
@@ -166,6 +177,60 @@ def render_architecture(layers: List[Layer]) -> None:
                 print(f"      dependências: {deps}")
 
 
+def gather_projects() -> List[Project]:
+    return [
+        Project(
+            name="Meu-Portfolio",
+            repo_url="https://github.com/Ramaswr/Meu-Portfolio",
+            description="Portfólio estático com terminal interativo, CTA para o projeto Big Data e documentação do HLD.",
+            contributions=[
+                "Index.html com navegação, terminal, projeto em destaque e botões que abrem o repositório de Big Data",
+                "Estilos e scripts minimalistas para manter a experiência leve e responsiva",
+                "README bilíngue e docs/HLD.md que explicam a integração com o projeto Big Data"
+            ]
+        ),
+        Project(
+            name="Banco-de-teste-BIG_DATA",
+            repo_url="https://github.com/Ramaswr/Banco-de-teste-BIG_DATA",
+            description="Repositório com datasets CSV/PDF e scripts Python que alimentam o pipeline de dados do portfólio.",
+            contributions=[
+                "Coleção de arquivos CSV/PDF prontos para análise",
+                "Scripts de ingestão/transformação (ETL) e exemplos de dashboards",
+                "Fonte de dados oficialmente vinculada aos botões do card 'Análise de Dados'"
+            ]
+        )
+    ]
+
+
+def serialize_architecture(layers: List[Layer], projects: List[Project], output_path: Path) -> None:
+    payload = {
+        "projects": [asdict(project) for project in projects],
+        "layers": [
+            {
+                "name": layer.name,
+                "description": layer.description,
+                "components": [
+                    {
+                        "name": component.name,
+                        "purpose": component.purpose,
+                        "responsibilities": component.responsibilities,
+                        "dependencies": component.dependencies,
+                    }
+                    for component in layer.components
+                ],
+            }
+            for layer in layers
+        ],
+    }
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    with output_path.open("w", encoding="utf-8") as fp:
+        json.dump(payload, fp, ensure_ascii=False, indent=2)
+
+
 if __name__ == "__main__":
     architecture_layers = build_architecture()
     render_architecture(architecture_layers)
+    projects = gather_projects()
+    output_file = Path(__file__).resolve().parents[1] / "docs" / "architecture.json"
+    serialize_architecture(architecture_layers, projects, output_file)
+    print(f"Arquitetura serializada em {output_file}")

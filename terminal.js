@@ -308,13 +308,12 @@ document.addEventListener('DOMContentLoaded', () => {
     rpm -qa > "$OUTDIR/rpm_list.txt" 2>/dev/null || true
   fi
 
-  # Hashes de arquivos listados (limitar)
+  # Hashes limitados
   HASHLIST="$OUTDIR/file_list_for_hash.txt"
-  find /home /tmp /var/tmp -type f -iname "*.sh" -o -iname "*.py" -o -iname "*.pl" -o -iname "*.bin" -o -iname "*.exe" -mtime -90 -print > "$HASHLIST" 2>/dev/null || true
+  find /home /tmp /var/tmp -type f \( -iname "*.sh" -o -iname "*.py" -o -iname "*.pl" -o -iname "*.bin" -o -iname "*.exe" \) -mtime -90 -print > "$HASHLIST" 2>/dev/null || true
   head -n 200 "$HASHLIST" | while read -r f; do
-    if [ -f "$f" ]; then
-      sha256sum "$f" >> "$OUTDIR/file_hashes_sha256.txt" 2>/dev/null || true
-    fi
+    [ -f "$f" ] || continue
+    sha256sum "$f" >> "$OUTDIR/file_hashes_sha256.txt" 2>/dev/null || true
   done
 
   # Rootkit scanners se instalados
@@ -325,13 +324,10 @@ document.addEventListener('DOMContentLoaded', () => {
     rkhunter --check --sk --rwo > "$OUTDIR/rkhunter.txt" 2>/dev/null || true
   fi
 
-  # Antivirus scan opcional (pode demorar)
+  # Antivirus opcional
   if command -v clamscan >/dev/null 2>&1; then
     clamscan -r --bell -i / > "$OUTDIR/clamscan_root.txt" 2>/dev/null || true
   fi
-
-  # Captura de pacotes opcional (descomente se quiser)
-  # sudo tcpdump -i any -nn -s 0 -w "$OUTDIR/capture.pcap" -c 10000
 
   # Compactar em ZIP e gerar checksum SHA256
   echo "Compactando resultados em $ZIPFILE"
@@ -512,6 +508,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const scriptKeys = Object.keys(scriptLibrary);
 
+const terminalApiBase = window.TERMINAL_API_BASE || document.documentElement.dataset.terminalApiBase || '';
+const terminalApiTimeoutMs = 4500;
+
+function buildBackendUrl() {
+  if (!terminalApiBase) return '';
+  return terminalApiBase.replace(/\/+$/,'') + '/api/terminal';
+}
+
+async function queryTerminalBackend(command) {
+  const backendUrl = buildBackendUrl();
+  if (!backendUrl) return null;
+
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), terminalApiTimeoutMs);
+  try {
+    const response = await fetch(backendUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ command }),
+      signal: controller.signal,
+    });
+    clearTimeout(timeoutId);
+    if (!response.ok) {
+      const detail = (await response.json().catch(() => ({}))).detail || response.statusText;
+      return { error: `API: ${detail}` };
+    }
+    const data = await response.json().catch(() => ({}));
+    if (Array.isArray(data.lines)) {
+      return { lines: data.lines };
+    }
+    return { error: 'Resposta inválida do backend' };
+  } catch (error) {
+    clearTimeout(timeoutId);
+    return { error: 'Backend inacessível' };
+  }
+}
+
   function resolveScriptKey(token) {
     if (!token) return null;
     const lowered = token.toLowerCase();
@@ -686,6 +719,18 @@ const scriptKeys = Object.keys(scriptLibrary);
       stopCurlAnimation();
       setHidden(true);
       return;
+    }
+
+    const backendResult = await queryTerminalBackend(cmd);
+    if (backendResult) {
+      if (backendResult.lines && backendResult.lines.length) {
+        backendResult.lines.forEach(line => appendLine(line));
+        return;
+      }
+      if (backendResult.error) {
+        appendLine(backendResult.error);
+        return;
+      }
     }
 
     appendLine(`${base}: comando não encontrado`);
